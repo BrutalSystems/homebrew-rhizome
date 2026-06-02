@@ -5,21 +5,21 @@
 class Rhizome < Formula
   desc "Self-hosted tunnel client — expose local ports via secure tunnels"
   homepage "https://tunnel.springthrough.com"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.1.0/rhizome_darwin_amd64.tar.gz"
-      sha256 "dabbb24a2ad3f702260e16751a814f5d4b8c2cbc06a66acc1e97477e88ae0329"
+      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.2.0/rhizome_darwin_amd64.tar.gz"
+      sha256 "18d400ac9ad4a7cd994e8964e16a5062c99ee4a110619bb65a93f9a5edd0ecdf"
 
       define_method(:install) do
         bin.install "rhizome"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.1.0/rhizome_darwin_arm64.tar.gz"
-      sha256 "6b056acd7bc0a261661956ecc898b024afece4133d5bae144daa0d81ab66e1cf"
+      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.2.0/rhizome_darwin_arm64.tar.gz"
+      sha256 "ca986e91298a5e018ca40d10db46a2619bb72e5c0f1e2c2d3bc9094a3ab63b5f"
 
       define_method(:install) do
         bin.install "rhizome"
@@ -29,12 +29,28 @@ class Rhizome < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.1.0/rhizome_linux_amd64.tar.gz"
-      sha256 "f26d4b9a4a9c9257cb34ba7a2b6f5d707aa83b62519046a639af125794e52059"
+      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.2.0/rhizome_linux_amd64.tar.gz"
+      sha256 "47e71f5da0c76b8ab09c19a80268e54d1675cbf1a22464bad16e193eaf35cc19"
       define_method(:install) do
         bin.install "rhizome"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      To run rhizome as a background service that survives logout and reboot:
+
+        rhizome service install <port> [--subdomain <name>]
+
+      Before `brew uninstall rhizome`, remove the service first:
+
+        rhizome service uninstall
+
+      Homebrew does not stop launchd services on uninstall, so skipping this
+      step leaves a stale plist at ~/Library/LaunchAgents/com.brutalsystems.rhizome.plist
+      that will fail to start after the binary is gone.
+    EOS
   end
 
   test do
