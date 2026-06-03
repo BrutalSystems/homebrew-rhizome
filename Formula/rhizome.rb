@@ -5,21 +5,21 @@
 class Rhizome < Formula
   desc "Self-hosted tunnel client — expose local ports via secure tunnels"
   homepage "https://tunnel.springthrough.com"
-  version "0.4.4"
+  version "0.4.5"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.4.4/rhizome_darwin_amd64.tar.gz"
-      sha256 "4afbbddaec6c85186c8b2d061ee498c1361d940a44a80bffc2adef39d6ca494e"
+      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.4.5/rhizome_darwin_amd64.tar.gz"
+      sha256 "edff5a5f00f972cd178e38f24e368956e43022e5e57ecec0432824bf404e38ea"
 
       define_method(:install) do
         bin.install "rhizome"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.4.4/rhizome_darwin_arm64.tar.gz"
-      sha256 "1390525db487f3d53db42ce71f5aa7c71e4adf28f6c7db5d62a8739dbdfd0059"
+      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.4.5/rhizome_darwin_arm64.tar.gz"
+      sha256 "4f7790568bc289aab8c6657bc6e8379419ca698517853f3120fa0b7a60e95959"
 
       define_method(:install) do
         bin.install "rhizome"
@@ -29,8 +29,8 @@ class Rhizome < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.4.4/rhizome_linux_amd64.tar.gz"
-      sha256 "47e52a6c86128e43d567b869d9cfba52178184999a9b30c0aae821f570db9999"
+      url "https://github.com/brutalsystems/homebrew-rhizome/releases/download/v0.4.5/rhizome_linux_amd64.tar.gz"
+      sha256 "2574ae8aa59f1aa42306625161b23bccf5d91923be4cfc4224a8991153e571d3"
       define_method(:install) do
         bin.install "rhizome"
       end
